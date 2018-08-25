@@ -43,10 +43,11 @@ Tweets nur mockt.
 4. https://spring.io/guides/gs/register-twitter-app/
 
 ## Deployment
-1. Erstmalig oder bei Problemen ein Clean & Build (Netbeans), respektive "mvn clean install" (Cmd) durchführen
-2. Bei Änderungen am POM-File oder bei (Neu)kompilierungsbedarf genügt ein Build (Netbeans), respektive "mvn install"
-3. Für den Start muss zunächst die Process Engine laufen, das heisst z.B. das Camunda Projekttemplate (https://github.com/zhaw-gpi/project-template)
-4. Für den Start ist ein Run (Netbeans), respektive "java -jar .\target\external-task-client-spring-boot-1.0.1.jar" (Cmd) erforderlich. Dabei wird die Main-Methode in ExternalTaskClientSpringBootTemplateApplication.java ausgeführt.
+1. **Erstmalig** oder bei Problemen ein **Clean & Build (Netbeans)**, respektive `mvn clean install` (Cmd) durchführen
+2. Bei Änderungen am POM-File oder bei **(Neu)kompilierungsbedarf** genügt ein **Build (Netbeans)**, respektive `mvn install`
+3. **Vor dem Start** muss zunächst die **Process Engine** laufen, bei welcher man sich registrieren will, das heisst z.B. das Camunda Projekttemplate (https://github.com/zhaw-gpi/project-template)
+4. Für den **Start** ist ein **Run (Netbeans)**, respektive `java -jar .\target\NAME DES JAR-FILES.jar` (Cmd) erforderlich. Dabei wird die Main-Methode in ExternalTaskClientSpringBootTemplateApplication.java ausgeführt.
+5. Das **Beenden** geschieht mit **Stop Build/Run (Netbeans)**, respektive **CTRL+C** (Cmd)
 
 ## Grundlegende Nutzung
 1. Damit man den Client in Aktion sieht, muss mindestens eine Aufgabe vom Topic "SendTweet" zu erledigen sein.
