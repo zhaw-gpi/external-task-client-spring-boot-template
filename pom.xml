@@ -10,27 +10,12 @@
     <name>External Task Client Spring Boot Template</name>
     <version>1.0.1</version>
     
-    <!-- Konfiguration des Maven-Projekts -->
-    <packaging>jar</packaging>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-
-    <!-- Setzt Spring Boot als massgebend für die Verwaltung der Abhängigkeiten in Maven -->
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.0.3.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <!-- Importiert Das Spring Boot-Starter-Parent Projekt als Eltern-Maven-Projekt: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent/2.0.4.RELEASE -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.4.RELEASE</version>
+    </parent>
 
     <!-- Legt die einzelnen Abhängigkeiten des Maven-Projekts fest -->
     <dependencies>
