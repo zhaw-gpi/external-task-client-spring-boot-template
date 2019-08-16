@@ -30,3 +30,6 @@
 
 ### VS Code ###
 /.vscode/
+
+### Credentials & Co. ####
+twitter4j.properties
