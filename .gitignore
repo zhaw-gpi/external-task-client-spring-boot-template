@@ -27,3 +27,6 @@
 /nbactions.xml
 
 /logs/
+
+### VS Code ###
+/.vscode/
