@@ -1,90 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <!-- Version von Maven -->
-    <modelVersion>4.0.0</modelVersion>
 
-    <!-- Grundangaben zum Maven-Projekt -->
-    <groupId>ch.zhaw.gpi</groupId>
-    <artifactId>external-task-client-spring-boot-template</artifactId>
-    <name>External Task Client Spring Boot Template</name>
-    <version>1.0.1</version>
-    
-    <properties>        
-        <maven.compiler.source>12</maven.compiler.source>
-        <maven.compiler.target>12</maven.compiler.target>
-    </properties>
-    
-    <!-- Importiert Das Spring Boot-Starter-Parent Projekt als Eltern-Maven-Projekt: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent/2.0.4.RELEASE -->
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.7.RELEASE</version>
-    </parent>
-
-    <!-- Legt die einzelnen Abhängigkeiten des Maven-Projekts fest -->
-    <dependencies>
-        <!-- Importiert die allgemeine Spring Boot Starter-Abhängigkeit.
-             Theoretisch gäbe es auch ein Social Twitter Starter, aber sehr
-             veraltet -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        
-        <!-- Importiert die Spring Social Twitter-Abhängigkeit -->
-        <dependency>
-            <groupId>org.twitter4j</groupId>
-            <artifactId>twitter4j-core</artifactId>
-            <version>4.0.7</version>
-        </dependency>
-        
-        <!-- Importiert die Camunda External Task Client-Abhängigkeit
-        https://mvnrepository.com/artifact/org.camunda.bpm/camunda-external-task-client/1.0.0 -->
-        <dependency>
-            <groupId>org.camunda.bpm</groupId>
-            <artifactId>camunda-external-task-client</artifactId>
-            <version>1.2.1</version>
-        </dependency>
-        
-        <!-- Überschreibt die Version von Spring-Web, welche bereits im Spring Boot Starter
-             enthalten ist. Grund ist ein im aktuellen Release nicht gelöster Bug,
-             beschrieben z.B. in https://stackoverflow.com/questions/50853639/twitter-template-fails-during-sending-direct-message-but-get-rate-limit-request -->
-        <!--dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
+  <!-- Version von Maven -->  
+  <modelVersion>4.0.0</modelVersion>  
+  <!-- Grundangaben zum Maven-Projekt -->  
+  <groupId>ch.zhaw.gpi</groupId>  
+  <artifactId>external-task-client-spring-boot-template</artifactId>  
+  <name>External Task Client Spring Boot Template</name>  
+  <version>1.0.1</version>  
+  <properties> 
+    <maven.compiler.source>11</maven.compiler.source>  
+    <maven.compiler.target>11</maven.compiler.target> 
+  </properties>  
+  <!-- Importiert Das Spring Boot-Starter-Parent Projekt als Eltern-Maven-Projekt: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent/2.0.4.RELEASE -->  
+  <parent> 
+    <groupId>org.springframework.boot</groupId>  
+    <artifactId>spring-boot-starter-parent</artifactId>  
+    <version>2.1.7.RELEASE</version> 
+  </parent>  
+  <!-- Legt die einzelnen Abh�ngigkeiten des Maven-Projekts fest -->  
+  <dependencies> 
+    <!-- Importiert die allgemeine Spring Boot Starter-Abh�ngigkeit.
+             Theoretisch g�be es auch ein Social Twitter Starter, aber sehr
+             veraltet -->  
+    <dependency> 
+      <groupId>org.springframework.boot</groupId>  
+      <artifactId>spring-boot-starter</artifactId> 
+    </dependency>  
+    <!-- Importiert die Spring Social Twitter-Abh�ngigkeit -->  
+    <dependency> 
+      <groupId>org.twitter4j</groupId>  
+      <artifactId>twitter4j-core</artifactId>  
+      <version>4.0.7</version> 
+    </dependency>  
+    <!-- Importiert die Camunda External Task Client-Abh�ngigkeit
+        https://mvnrepository.com/artifact/org.camunda.bpm/camunda-external-task-client/1.0.0 -->  
+    <dependency> 
+      <groupId>org.camunda.bpm</groupId>  
+      <artifactId>camunda-external-task-client</artifactId>  
+      <version>1.2.1</version> 
+    </dependency>  
+    <!-- �berschreibt die Version von Spring-Web, welche bereits im Spring Boot Starter
+             enthalten ist. Grund ist ein im aktuellen Release nicht gel�ster Bug,
+             beschrieben z.B. in https://stackoverflow.com/questions/50853639/twitter-template-fails-during-sending-direct-message-but-get-rate-limit-request -->  
+    <!--dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>5.0.4.RELEASE</version>
-        </dependency-->
+        </dependency-->  
+    <!-- In OpenJDK ist die folgende f�r die XML-Verarbeitung erforderliche 
+            Bibliothek nicht mehr standardm�ssig dabei -->  
+    <dependency> 
+      <groupId>com.sun.xml.bind</groupId>  
+      <artifactId>jaxb-impl</artifactId>  
+      <version>2.2.3</version> 
+    </dependency> 
+  </dependencies>  
+  <build> 
+    <plugins> 
+      <!-- The Spring Boot Maven Plugin provides Spring Boot support in Maven, 
+            allowing you to package executable jar or war archives and run an application �in-place�.
+            https://docs.spring.io/spring-boot/docs/2.0.4.RELEASE/maven-plugin/usage.html -->  
+      <plugin> 
+        <groupId>org.springframework.boot</groupId>  
+        <artifactId>spring-boot-maven-plugin</artifactId>  
+        <version>2.0.3.RELEASE</version>  
+        <configuration> 
+          <layout>ZIP</layout> 
+        </configuration>  
+        <executions> 
+          <execution> 
+            <goals> 
+              <goal>repackage</goal> 
+            </goals> 
+          </execution> 
+        </executions> 
+      </plugin>  
 
-        <!-- In OpenJDK ist die folgende für die XML-Verarbeitung erforderliche 
-            Bibliothek nicht mehr standardmässig dabei -->
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-impl</artifactId>
-                <version>2.2.3</version>
-            </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <!-- The Spring Boot Maven Plugin provides Spring Boot support in Maven, 
-            allowing you to package executable jar or war archives and run an application “in-place”.
-            https://docs.spring.io/spring-boot/docs/2.0.4.RELEASE/maven-plugin/usage.html -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.0.3.RELEASE</version>
-                <configuration>
-                    <layout>ZIP</layout>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+      <!-- Azure Plugin, um einfach das Projekt auf Azure zu deployen. Details siehe 
+        https://docs.microsoft.com/en-us/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?view=azure-java-stable 
+        und https://code.visualstudio.com/docs/java/java-webapp -->
+      <plugin> 
+        <groupId>com.microsoft.azure</groupId>  
+        <artifactId>azure-webapp-maven-plugin</artifactId>  
+        <version>1.7.0</version>  
+        <configuration>
+          <schemaVersion>V2</schemaVersion>
+          <resourceGroup>external-task-client-spring-boot-template-1566225913890-rg</resourceGroup>
+          <appName>external-task-client-spring-boot-template-1566225913890</appName>
+          <pricingTier>P1v2</pricingTier>
+          <region>westeurope</region>
+          <runtime>
+            <os>linux</os>
+            <javaVersion>java11</javaVersion>
+            <webContainer>java11</webContainer>
+          </runtime>
+          <deployment>
+            <resources>
+              <resource>
+                <directory>${project.basedir}/target</directory>
+                <includes>
+                  <include>*.jar</include>
+                </includes>
+              </resource>
+            </resources>
+          </deployment>
+          <!-- Begin of App Settings  -->
+          <appSettings>
+            <property>
+                <name>JAVA_OPTS</name>
+                <value>-Dserver.port=80</value>
+            </property>
+        </appSettings>
+        <!-- End of App Settings  -->
+        </configuration>
+      </plugin> 
+    </plugins> 
+  </build> 
 </project>
