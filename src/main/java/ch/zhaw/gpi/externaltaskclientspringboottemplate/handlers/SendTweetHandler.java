@@ -1,6 +1,8 @@
 package ch.zhaw.gpi.externaltaskclientspringboottemplate.handlers;
 
 import ch.zhaw.gpi.externaltaskclientspringboottemplate.services.TwitterService;
+import twitter4j.TwitterException;
+
 import org.camunda.bpm.client.task.ExternalTask;
 import org.camunda.bpm.client.task.ExternalTaskHandler;
 import org.camunda.bpm.client.task.ExternalTaskService;
@@ -33,9 +35,14 @@ public class SendTweetHandler implements ExternalTaskHandler {
 
             // Den Task erledigen
             externalTaskService.complete(externalTask);
-        } catch (Exception e) {
-            // Bei einem Fehler soll dieser an die Process Engine zurück gemeldet werden (gibt einen Incident)
-            externalTaskService.handleFailure(externalTask, "Fehler beim Posten des Tweets", e.getLocalizedMessage(), 0, 1);
+        } catch (TwitterException te) {
+            // Bei einem Duplicate-Post soll ein BPMN-Error ausgelöst werden
+            if(te.getErrorCode() == 187){
+                externalTaskService.handleBpmnError(externalTask, "DuplicateTweet");
+            } else {
+                // Bei allen übrigen Fehler soll dieser an die Process Engine zurück gemeldet werden als Incident
+                externalTaskService.handleFailure(externalTask, "Fehler beim Posten des Tweets", te.getLocalizedMessage(), 0, 1);
+            }
         }
     }
 }

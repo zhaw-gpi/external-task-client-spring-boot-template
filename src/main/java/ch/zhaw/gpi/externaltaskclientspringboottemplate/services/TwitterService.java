@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import twitter4j.Twitter;
+import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.Status;
 
@@ -55,20 +56,11 @@ public class TwitterService {
      * @param statusText Der zu postende Text
      * @throws java.lang.Exception
      */
-    public void updateStatus(String statusText) throws Exception {
-        // Versucht, den Tweet zu posten oder "behandelt" Fehler durch Ausgabe von Meldungen in der Konsole
-        try {
+    public void updateStatus(String statusText) throws TwitterException {
             // Tweet posten
             Status status = twitter.updateStatus(statusText);
 
             // Als Bestätigung in der Output-Konsole den geposteten Tweet zurück gegeben
             System.out.println("TWITTER: Erfolgreich getweetet:" + status.getText());
-        } catch (Exception e) {
-            // Fehler ausgeben in Konsole (vereinfacht das Testen)
-            System.err.println("TWITTER: Tweet posten fehlgeschlagen: " + e.getLocalizedMessage());
-
-            // Fehler an aufrufende Methode zurück geben
-            throw new Exception("TWITTER: Tweet posten fehlgeschlagen", e);
-        }
     }
 }

@@ -34,7 +34,7 @@ public class TweetSendingExternalTaskClient {
                 .baseUrl("http://localhost:8080/engine-rest") // URL der REST API der Process Engine
                 .workerId("java-sendtweet") // Eindeutiger Name, damit die Process Engine "weiss", wer einen bestimmten Task gelocked hat
                 .maxTasks(10) // Wie viele Tasks sollen maximal auf einen "Schlag" (Batch) gefetched werden
-                .lockDuration(2000) // Long Polling für 2 Sekunden (2000 Millisekunden) -> siehe https://docs.camunda.org/manual/latest/user-guide/process-engine/external-tasks/#long-polling-to-fetch-and-lock-external-tasks
+                .lockDuration(2000) // 2 Sekunden lang sind die Tasks gelocked für andere External Task Clients
                 .build(); // Die External Task Client-Instanz mit den vorhergehenden Angaben erstellen
 
         /**
